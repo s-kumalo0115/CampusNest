@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CampusNest | Verified Landlords</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Firebase (v10 modular) -->
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="landlords.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container navbar">
+      <div class="logo">🏡 CampusNest</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="listings.html">View Listings</a></li>
+        <li><a href="landlords.html" class="active">Verified Landlords</a></li>
+        <li><a href="add-landlord.html">Add Landlord</a></li>
+        <li><a href="add-listing.html">Add Listing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="landlords container">
+      <h1>Verified Landlords</h1>
+      <p class="intro-text">Meet our trusted landlords — click to view their properties or contact them.</p>
+      <div id="landlord-grid" class="listing-grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 CampusNest | All Rights Reserved</p>
+    </div>
+  </footer>
+</body>
+</html>
