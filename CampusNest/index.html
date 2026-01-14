@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CampusNest | Student Accommodation</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- ✅ Firebase must load FIRST -->
+  <script type="module" src="firebase.js"></script>
+
+  <!-- ✅ Auth depends on Firebase -->
+  <script type="module" src="auth.js"></script>
+
+  <!-- ✅ Site logic LAST -->
+  <script type="module" src="script.js"></script>
+</head>
+
+<body>
+
+<!-- ===== HEADER / NAVBAR ===== -->
+<header class="header">
+  <div class="container navbar">
+    <div class="logo"> 
+  <img src="images/logo.png.png" alt="CampusNest"/> 
+  <span>CampusNest</span>
+</div>
+    <ul class="nav-links">
+      <li><a href="listings.html">View Listings</a></li>
+      <li><a href="landlords.html">Verified Landlords</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+
+      <li id="authContainer">
+        <button id="authBtn" class="btn">Sign In</button>
+      </li>
+
+      <li class="dropdown" id="userDropdown" style="display:none;">
+        <button id="userMenuBtn" class="user-btn">
+          <span id="username">User</span>
+        </button>
+
+        <div class="dropdown-menu">
+          <div class="dropdown-header">
+            <strong id="userNameTop">User Name</strong>
+          </div>
+          <a href="profile.html">My Profile</a>
+          <a href="enquiries.html">My Enquiries</a>
+          <button id="logoutBtn">Logout</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero">
+  <div class="slides">
+    <div class="slide"><img src="images/IMG1.jpg" alt="slide1"></div>
+    <div class="slide"><img src="images/IMG2.jpg" alt="slide2"></div>
+    <div class="slide"><img src="images/IMG3.jpg" alt="slide3"></div>
+  </div>
+
+  <div class="hero-content container">
+    <h1>Find Safe & Affordable Student Accommodation</h1>
+    <p>Discover verified listings and trusted landlords close to your campus.</p>
+
+    <form id="search-form" class="search-bar">
+      <input id="search-location" type="text" placeholder="Search city, campus, or suburb" />
+      <select id="min-price">
+        <option value="">Min Price</option>
+        <option value="1500">R1 500</option>
+        <option value="2000">R2 000</option>
+        <option value="2500">R2 500</option>
+      </select>
+      <select id="max-price">
+        <option value="">Max Price</option>
+        <option value="3000">R3 000</option>
+        <option value="3500">R3 500</option>
+        <option value="4000">R4 000</option>
+        <option value="4500">R4 500</option>
+      </select>
+      <select id="bedrooms">
+        <option value="">Bedrooms</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+      </select>
+      <button type="submit" class="btn search-btn">Search</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features container">
+  <h2>Why Choose CampusNest?</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="">
+      <h3>Verified Landlords</h3>
+      <p>All landlords are verified for your safety.</p>
+    </div>
+    <div class="feature-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3580/3580378.png" alt="">
+      <h3>Affordable Prices</h3>
+      <p>Filter options for student budgets.</p>
+    </div>
+    <div class="feature-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/854/854878.png" alt="">
+      <h3>Close to Campus</h3>
+      <p>Find listings near your university.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="stats">
+  <div class="container">
+    <h2>CampusNest in Numbers</h2>
+    <p>Empowering students nationwide.</p>
+
+    <div class="stats-grid">
+      <div class="stat-box"><h3 class="count" data-target="250">0</h3><p>Verified Landlords</p></div>
+      <div class="stat-box"><h3 class="count" data-target="1200">0</h3><p>Active Listings</p></div>
+      <div class="stat-box"><h3 class="count" data-target="3500">0</h3><p>Happy Students</p></div>
+      <div class="stat-box"><h3 class="count" data-target="20">0</h3><p>Campuses Covered</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 CampusNest | All Rights Reserved</p>
+  </div>
+</footer>
+
+<!-- ===== AUTH MODAL ===== -->
+<div class="auth-modal" id="authModal" style="display:none;">
+  <div class="auth-box">
+    <button class="auth-close" id="authClose">&times;</button>
+
+    <div class="auth-tabs">
+      <button id="signInTab" class="active">Sign In</button>
+      <button id="signUpTab">Sign Up</button>
+    </div>
+
+    <form id="signInForm" class="auth-form">
+      <input type="email" id="signInEmail" placeholder="Email" required autocomplete="username">
+      <input type="password" id="signInPassword" placeholder="Password" required autocomplete="current-password">
+      <button type="submit" class="btn">Sign In</button>
+
+      <button type="button" id="googleSignInBtn" class="google-btn">Sign In with Google</button>
+      <button type="button" id="adminSignInBtn" class="btn-outline">Admin Sign In</button>
+
+      <p id="signInMessage" class="status-message error-message"></p>
+    </form>
+
+    <form id="signUpForm" class="auth-form" style="display:none;">
+      <input type="text" id="signUpName" placeholder="Full Name" required>
+      <input type="email" id="signUpEmail" placeholder="Email" required autocomplete="username">
+      <input type="password" id="signUpPassword" placeholder="Password" required autocomplete="new-password">
+      <button type="submit" class="btn">Sign Up</button>
+      <button type="button" id="googleSignUpBtn" class="google-btn">Sign Up with Google</button>
+      <p id="signUpMessage" class="status-message"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ===== SEARCH REDIRECT LOGIC (SAFE ADD) ===== -->
+<script type="module">
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("search-form");
+  if (!form) return;
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+
+    const location = document.getElementById("search-location")?.value.trim() || "";
+    const min = document.getElementById("min-price")?.value || "";
+    const max = document.getElementById("max-price")?.value || "";
+    const beds = document.getElementById("bedrooms")?.value || "";
+
+    const params = new URLSearchParams();
+    if (location) params.set("search", location);
+    if (min) params.set("min", min);
+    if (max) params.set("max", max);
+    if (beds) params.set("beds", beds);
+
+    window.location.href = "listings.html?" + params.toString();
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CampusNest | Listing Details</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Firebase v10 modular -->
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="listing-details.js"></script>
+
+  <style>
+    /* Map buttons styling */
+    .map-buttons {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .map-buttons .btn {
+      padding: 10px 20px;
+      border: none;
+      background: #ff7a59;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .map-buttons .btn:hover {
+      background: #ff5722;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== Navbar ===== -->
+  <header class="header">
+    <div class="container navbar">
+      <div class="logo"> 
+  <img src="images/logo.png.png" alt="CampusNest"/> 
+  <span>CampusNest</span>
+</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="listings.html" class="active">View Listings</a></li>
+        <li><a href="landlords.html">Verified Landlords</a></li>
+        <li><a href="add-listing.html">Add Listing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ===== Main Listing Section ===== -->
+  <main>
+    <section class="listing-details container">
+
+      <!-- Hero Image -->
+      <div id="main-image">
+        <img src="https://english.dcu.ie/wp-content/uploads/2017/05/web-on-campus-residence-accommodation-dcu-english-Living-Area.png" alt="Main Listing" class="main-listing-image" />
+      </div>
+
+      <!-- Listing Info -->
+      <div id="listing-info" class="listing-info">
+        <h2>Modern Student Apartment</h2>
+        <p>Located near UJ Kingsway Campus, this cozy apartment offers Wi-Fi, laundry, and private study areas for students.</p>
+        <p><strong>Price:</strong> R3,200/month</p>
+        <p><strong>Location:</strong> Auckland Park, Johannesburg</p>
+      </div>
+
+      <!-- Image Gallery -->
+      <div id="image-gallery" class="image-gallery">
+        <button class="gallery-btn left" onclick="prevImage()"><i class="fas fa-chevron-left"></i></button>
+        <img src="https://www.bing.com/th/id/OIG1.nw1q3MxfA06ZNkc0cDp3?w=540&h=540&c=6&r=0&o=5&cb=ucfimg2&dpr=1.3&pid=ImgGn&ucfimg=1" alt="Gallery Image" class="gallery-image" id="galleryImage" />
+        <button class="gallery-btn right" onclick="nextImage()"><i class="fas fa-chevron-right"></i></button>
+      </div>
+
+      <!-- Landlord Info -->
+      <div id="landlord-info" class="landlord-info">
+        <img src="https://static.vecteezy.com/system/resources/previews/045/892/915/non_2x/black-man-in-suit-standing-in-front-of-city-free-photo.jpeg" alt="Thabo Mokoena" class="landlord-photo" />
+        <h3>Thabo Mokoena</h3>
+        <p>Verified Landlord • Managing 3 Properties</p>
+        <div class="landlord-contact">
+          <a href="tel:+27123456789"><i class="fas fa-phone"></i> Call</a>
+          <a href="mailto:thabo.mokoena@example.com"><i class="fas fa-envelope"></i> Email</a>
+          <a href="https://wa.me/27123456789" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+      </div>
+
+      <!-- Enquiry Form -->
+      <div id="enquiry-form" class="enquiry-form">
+        <h2>Send an Enquiry</h2>
+        <form id="enquiryForm">
+          <label for="fromDate">From Date</label>
+          <input type="date" id="fromDate" required />
+
+          <label for="toDate">To Date</label>
+          <input type="date" id="toDate" required />
+
+          <label for="message">Message (optional)</label>
+          <textarea id="message" rows="5" placeholder="Ask about availability or viewing..."></textarea>
+
+          <button type="submit">Send Message</button>
+        </form>
+        <p id="enquiryStatus"></p>
+      </div>
+
+      <!-- Map Section -->
+      <div id="listing-map" class="listing-map">
+        <h3>Property Location</h3>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.045186502339!2d27.98699487505094!3d-26.18315236754747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950b1b38e4d7f3%3A0x4a63adfa9b2e44a!2sUniversity%20of%20Johannesburg!5e0!3m2!1sen!2sza!4v1708123595290!5m2!1sen!2sza"
+          allowfullscreen="" loading="lazy">
+        </iframe>
+
+        <div class="map-buttons">
+          <button id="getDirectionsBtn" class="btn">Get Directions</button>
+          <button id="findLocationBtn" class="btn">Find My Location</button>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 CampusNest | All Rights Reserved</p>
+    </div>
+  </footer>
+</body>
+</html>

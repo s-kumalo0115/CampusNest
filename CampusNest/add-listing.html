@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CampusNest | Add Listing</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Firebase (modular) -->
+  <script type="module" src="firebase.js"></script>
+
+  <!-- Add Listing JS -->
+  <script type="module" src="add-listing.js"></script>
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="container navbar">
+      <div class="logo"> 
+  <img src="images/logo.png.png" alt="CampusNest"/> 
+  <span>CampusNest</span>
+</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="listings.html">View Listings</a></li>
+        <li><a href="landlords.html">Verified Landlords</a></li>
+        <li><a href="add-listing.html" class="active">Add Listing</a></li>
+        <li><a href="add-landlord.html">Add Landlord</a></li>
+
+         <li id="authContainer">
+        <button id="authBtn" class="btn">Sign In</button>
+      </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ===== MAIN FORM SECTION ===== -->
+  <main>
+    <section class="add-listing container">
+      <h1>Add New Student Accommodation</h1>
+      <p class="intro-text">Fill in the details below to add your listing. Multiple images can be uploaded.</p>
+
+      <form id="listingForm" class="listing-form">
+        <!-- Title -->
+        <div class="form-group">
+          <label for="title">Title <span class="required">*</span></label>
+          <input type="text" id="title" placeholder="e.g., Modern Apartment near Campus" required>
+        </div>
+
+        <!-- Price -->
+        <div class="form-group">
+          <label for="price">Price per Month (R) <span class="required">*</span></label>
+          <input type="number" id="price" placeholder="e.g., 3500" required>
+        </div>
+
+        <!-- Location -->
+        <div class="form-group">
+          <label for="location">Location <span class="required">*</span></label>
+          <input type="text" id="location" placeholder="City or suburb" required>
+        </div>
+
+        <!-- University -->
+        <div class="form-group">
+          <label for="university">Nearby University / Campus</label>
+          <input type="text" id="university" placeholder="Optional">
+        </div>
+
+        <!-- Type -->
+        <div class="form-group">
+          <label for="type">Type</label>
+          <select id="type">
+            <option value="">Select type</option>
+            <option value="Apartment">Apartment</option>
+            <option value="House">House</option>
+            <option value="Room">Room</option>
+          </select>
+        </div>
+
+        <!-- Bedrooms -->
+        <div class="form-group">
+          <label for="bedrooms">Bedrooms</label>
+          <input type="number" id="bedrooms" placeholder="e.g., 2">
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" rows="5" placeholder="Provide details about the listing..."></textarea>
+        </div>
+
+        <!-- Coordinates -->
+        <div class="form-group coordinates-group">
+          <label>Coordinates (optional)</label>
+          <input type="number" id="latitude" placeholder="Latitude" step="0.000001">
+          <input type="number" id="longitude" placeholder="Longitude" step="0.000001">
+        </div>
+
+        <!-- Images -->
+        <div class="form-group">
+          <label for="images">Upload Images</label>
+          <input type="file" id="images" multiple accept="image/*">
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn submit-btn">Add Listing</button>
+        <p id="formMessage" class="form-message"></p>
+      </form>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 CampusNest | All Rights Reserved</p>
+    </div>
+  </footer>
+</body>
+</html>

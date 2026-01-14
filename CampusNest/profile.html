@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Profile | CampusNest</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Firebase modular -->
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="profile.js" defer></script>
+</head>
+
+<body>
+
+<!-- ===== HEADER / NAVBAR ===== -->
+<header class="header">
+  <div class="container navbar">
+    <div class="logo"> 
+  <img src="images/logo.png.png" alt="CampusNest"/> 
+  <span>CampusNest</span>
+</div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="listings.html">View Listings</a></li>
+      <li><a href="landlords.html">Verified Landlords</a></li>
+    
+
+      <!-- User Dropdown -->
+      <li class="dropdown" id="userDropdown" style="display:none;">
+        <button id="userMenuBtn" class="user-btn">
+          <span id="username">User</span>
+        </button>
+
+        <div class="dropdown-menu">
+          <div class="dropdown-header">
+            <strong id="userNameTop">User Name</strong>
+          </div>
+          <a href="profile.html">My Profile</a>
+          <a href="enquiries.html">My Enquiries</a>
+          <button id="logoutBtn">Logout</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<!-- ===== MAIN ===== -->
+<main class="profile-page">
+  <section class="profile-container">
+
+    <div class="profile-card">
+      <h1>👋 My Profile</h1>
+      <p>Update your personal information.</p>
+
+      <form id="profileForm" class="form-section">
+        <label>Full Name</label>
+        <input type="text" id="profileName" required />
+
+        <label>Email</label>
+        <input type="email" id="profileEmail" readonly />
+
+        <label>Phone Number</label>
+        <input type="text" id="profilePhone" />
+
+        <label>Campus</label>
+        <input type="text" id="profileCampus" />
+
+        <button type="submit" class="btn">Save Changes</button>
+        <p id="profileMessage" class="success-message"></p>
+      </form>
+    </div>
+
+    <div class="profile-details">
+      <h2>📋 My Details</h2>
+      <p><strong>Name:</strong> <span id="detailName">-</span></p>
+      <p><strong>Email:</strong> <span id="detailEmail">-</span></p>
+      <p><strong>Phone:</strong> <span id="detailPhone">-</span></p>
+      <p><strong>Campus:</strong> <span id="detailCampus">-</span></p>
+    </div>
+
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 CampusNest | All Rights Reserved</p>
+  </div>
+</footer>
+
+</body>
+</html>

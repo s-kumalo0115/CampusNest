@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Enquiries | CampusNest</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Firebase -->
+  <script type="module" src="firebase.js"></script>
+
+  <!-- Enquiries logic ONLY -->
+  <script type="module" src="enquiries.js"></script>
+</head>
+
+<body>
+
+<!-- ===== HEADER / NAVBAR ===== -->
+<header class="header">
+  <div class="container navbar">
+    <div class="logo"> 
+  <img src="images/logo.png.png" alt="CampusNest"/> 
+  <span>CampusNest</span>
+</div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="listings.html">View Listings</a></li>
+      <li><a href="landlords.html">Verified Landlords</a></li>
+
+      <!-- USER DROPDOWN -->
+      <li class="dropdown" id="userDropdown" style="display:none;">
+        <button id="userMenuBtn" class="user-btn">
+          <span id="username">User</span>
+        </button>
+
+        <div class="dropdown-menu">
+          <div class="dropdown-header">
+            <strong id="userNameTop">User</strong>
+          </div>
+          <a href="profile.html">My Profile</a>
+          <a href="enquiries.html">My Enquiries</a>
+          <button id="logoutBtn">Logout</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="container enquiries-page">
+  <h1>My Enquiries</h1>
+  <p>Here are all your recent property enquiries.</p>
+
+  <div id="enquiriesList" class="enquiries-list">
+    <p>Loading enquiries...</p>
+  </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <p>&copy; 2025 CampusNest | All Rights Reserved</p>
+  </div>
+</footer>
+
+</body>
+</html>

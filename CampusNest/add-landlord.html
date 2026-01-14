@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CampusNest | Add Landlord</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Firebase (modular) -->
+  <script type="module" src="firebase.js"></script>
+
+  <!-- Add Landlord JS -->
+  <script type="module" src="add-landlord.js"></script>
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="container navbar">
+      <div class="logo"> 
+  <img src="images/logo.png.png" alt="CampusNest"/> 
+  <span>CampusNest</span>
+</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="listings.html">View Listings</a></li>
+        <li><a href="landlords.html">Verified Landlords</a></li>
+        <li><a href="add-listing.html">Add Listing</a></li>
+        <li><a href="add-landlord.html" class="active">Add Landlord</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ===== MAIN FORM SECTION ===== -->
+  <main>
+    <section class="add-landlord container">
+      <h1>Add New Landlord</h1>
+      <p class="intro-text">Fill in the landlord's details below to add them to CampusNest.</p>
+
+      <form id="landlordForm" class="listing-form">
+        <div class="form-group">
+          <label for="name">Full Name <span class="required">*</span></label>
+          <input type="text" id="name" placeholder="e.g., Alex Joe" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number <span class="required">*</span></label>
+          <input type="tel" id="phone" placeholder="e.g., 0712345678" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email <span class="required">*</span></label>
+          <input type="email" id="email" placeholder="e.g., joe@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" placeholder="Optional">
+        </div>
+
+        <div class="form-group">
+          <label for="photo">Profile Image</label>
+          <input type="file" id="photo" accept="image/*">
+        </div>
+
+        <button type="submit" class="btn submit-btn">Add Landlord</button>
+        <p id="formMessage" class="form-message"></p>
+      </form>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 CampusNest | All Rights Reserved</p>
+    </div>
+  </footer>
+</body>
+</html>
