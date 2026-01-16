@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Listing Info
     listingInfoDiv.innerHTML = `
       <h1>${listing.title || ""}</h1>
-      <p>${listing.description || ""}</p>
+      <p>${listing.description || "No description provided."}</p>
       <p>💰 Price: R${listing.price || ""}</p>
       <p>🏠 Type: ${listing.type || ""}</p>
       <p>🛏 Bedrooms: ${listing.bedrooms || ""}</p>

@@ -13,30 +13,7 @@
   <!-- Firebase v10 modular -->
   <script type="module" src="firebase.js"></script>
   <script type="module" src="listing-details.js"></script>
-
-  <style>
-    /* Map buttons styling */
-    .map-buttons {
-      margin-top: 15px;
-      display: flex;
-      gap: 10px;
-    }
-
-    .map-buttons .btn {
-      padding: 10px 20px;
-      border: none;
-      background: #ff7a59;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
-
-    .map-buttons .btn:hover {
-      background: #ff5722;
-    }
-  </style>
+  <script type="module" src="auth.js"></script>
 </head>
 
 <body>
@@ -64,14 +41,9 @@
       <div id="main-image">
         <img src="https://english.dcu.ie/wp-content/uploads/2017/05/web-on-campus-residence-accommodation-dcu-english-Living-Area.png" alt="Main Listing" class="main-listing-image" />
       </div>
+     <div id="listing-info" class="listing-info"></div>
+      
 
-      <!-- Listing Info -->
-      <div id="listing-info" class="listing-info">
-        <h2>Modern Student Apartment</h2>
-        <p>Located near UJ Kingsway Campus, this cozy apartment offers Wi-Fi, laundry, and private study areas for students.</p>
-        <p><strong>Price:</strong> R3,200/month</p>
-        <p><strong>Location:</strong> Auckland Park, Johannesburg</p>
-      </div>
 
       <!-- Image Gallery -->
       <div id="image-gallery" class="image-gallery">

@@ -25,20 +25,44 @@ document.addEventListener("DOMContentLoaded", () => {
   const userNameTop = document.getElementById("userNameTop");
   const logoutBtn = document.getElementById("logoutBtn");
 
-  onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-      window.location.href = "index.html";
-      return;
+  async function loadUserDropdown(user) {
+  userDropdown.style.display = "block";
+
+  try {
+    const userSnap = await getDocs(
+      query(
+        collection(db, "users"),
+        where("__name__", "==", user.uid)
+      )
+    );
+
+    if (!userSnap.empty) {
+      const data = userSnap.docs[0].data();
+      const displayName = data.name || user.displayName || "User";
+
+      usernameSpan.textContent = displayName;
+      
+    } else {
+      usernameSpan.textContent = "👤User";
+      
     }
+  } catch (err) {
+    console.error("Dropdown load failed:", err);
+    usernameSpan.textContent = "User";
+    userNameTop.textContent = "User";
+  }
+}
 
-    // ✅ SHOW DROPDOWN (same as profile)
-    userDropdown.style.display = "block";
-    const name = user.displayName || user.email.split("@")[0];
-    usernameSpan.textContent = name;
-    userNameTop.textContent = name;
+  onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "index.html";
+    return;
+  }
 
-    loadEnquiries(user.uid);
-  });
+  await loadUserDropdown(user);
+  loadEnquiries(user.uid);
+});
+
 
   async function loadEnquiries(userId) {
     enquiriesList.innerHTML = "<p>Loading enquiries...</p>";

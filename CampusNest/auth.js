@@ -1,3 +1,5 @@
+
+
 // auth.js – FULLY FIXED (Google Sign-In + Logout)
 import { auth, db } from "./firebase.js";
 import {
@@ -214,11 +216,6 @@ if (signInTab && signUpTab && signInForm && signUpForm) {
         return;
       }
 
-      if (email === DEMO_ADMIN_EMAIL && password === DEMO_ADMIN_PASSWORD) {
-        window.location.href = "admin.html";
-        return;
-      }
-
       try {
         const uc = await signInWithEmailAndPassword(auth, email, password);
         const adminDoc = await getDoc(doc(db, "admins", uc.user.uid));
@@ -277,3 +274,4 @@ if (document.readyState === "loading") {
 } else {
   initAuth();
 }
+

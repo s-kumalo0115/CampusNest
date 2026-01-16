@@ -25,6 +25,7 @@
   <img src="images/logo.png.png" alt="CampusNest"/> 
   <span>CampusNest</span>
 </div>
+
     <ul class="nav-links">
       <li><a href="listings.html">View Listings</a></li>
       <li><a href="landlords.html">Verified Landlords</a></li>
@@ -42,7 +43,7 @@
 
         <div class="dropdown-menu">
           <div class="dropdown-header">
-            <strong id="userNameTop">User Name</strong>
+            <strong id="userNameTop">🫆</strong>
           </div>
           <a href="profile.html">My Profile</a>
           <a href="enquiries.html">My Enquiries</a>
@@ -188,7 +189,16 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "listings.html?" + params.toString();
   });
 });
-</script>
 
+
+  const toggleBtn = document.querySelector('.nav-toggle');
+  const navWrapper = document.querySelector('.nav-links-wrapper');
+
+  toggleBtn.addEventListener('click', () => {
+    navWrapper.classList.toggle('show');
+  });
+
+
+</script>
 </body>
 </html>

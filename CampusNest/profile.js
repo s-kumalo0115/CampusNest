@@ -30,9 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Show dropdown
     userDropdown.style.display = "block";
-    usernameSpan.textContent = user.displayName || "User";
-    userNameTop.textContent = user.displayName || "User";
-
+    
     const userId = user.uid;
     const email = user.email;
 
@@ -42,15 +40,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       const userDoc = await getDoc(doc(db, "users", userId));
       if (userDoc.exists()) {
-        const data = userDoc.data();
-        profileNameInput.value = data.name || "";
-        profilePhoneInput.value = data.phone || "";
-        profileCampusInput.value = data.campus || "";
+  const data = userDoc.data();
 
-        detailName.innerText = data.name || "-";
-        detailPhone.innerText = data.phone || "-";
-        detailCampus.innerText = data.campus || "-";
-      }
+  const displayName = data.name || user.displayName || "User";
+
+  usernameSpan.textContent = displayName;
+
+
+  profileNameInput.value = data.name || "";
+  profilePhoneInput.value = data.phone || "";
+  profileCampusInput.value = data.campus || "";
+
+  detailName.innerText = data.name || "-";
+  detailPhone.innerText = data.phone || "-";
+  detailCampus.innerText = data.campus || "-";
+}
+
     } catch (err) {
       console.error("Profile load error:", err);
     }

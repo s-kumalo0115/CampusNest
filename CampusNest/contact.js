@@ -1,37 +1,59 @@
-// contact.js - Modular Firebase v10+
-// Handles contact form submissions
+// contact.js – AUTH REQUIRED CONTACT FORM
 
-import { db } from "./firebase.js";
-import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { auth, db } from "./firebase.js";
+import {
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+import {
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const contactForm = document.getElementById("contactForm");
-const contactMessageFeedback = document.getElementById("contactMessageFeedback");
+const feedback = document.getElementById("contactMessageFeedback");
+
+let currentUser = null;
+
+// Require login
+onAuthStateChanged(auth, user => {
+  if (!user) {
+    feedback.textContent = "⚠ Please log in to contact admin.";
+    feedback.style.color = "red";
+    if (contactForm) contactForm.style.display = "none";
+  } else {
+    currentUser = user;
+    if (contactForm) contactForm.style.display = "block";
+  }
+});
 
 if (contactForm) {
   contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    if (!currentUser) return;
 
-    const name = document.getElementById("contactName")?.value.trim() || "";
-    const email = document.getElementById("contactEmail")?.value.trim() || "";
-    const message = document.getElementById("contactMessage")?.value.trim() || "";
-
-    if (!name || !email || !message) return;
+    const message = document.getElementById("contactMessage")?.value.trim();
+    if (!message) return;
 
     try {
       await addDoc(collection(db, "contacts"), {
-        userName: name,
-        userEmail: email,
-        message: message,
+        userId: currentUser.uid,
+        userName: currentUser.displayName || "",
+        userEmail: currentUser.email,
+        message,
+        read: false,
         createdAt: serverTimestamp()
       });
 
-      contactMessageFeedback.style.color = "green";
-      contactMessageFeedback.textContent = "✅ Message sent successfully!";
+      feedback.style.color = "green";
+      feedback.textContent = "✅ Message sent to admin.";
       contactForm.reset();
+
     } catch (err) {
       console.error(err);
-      contactMessageFeedback.style.color = "red";
-      contactMessageFeedback.textContent = "❌ Error sending message: " + err.message;
+      feedback.style.color = "red";
+      feedback.textContent = "❌ Failed to send message.";
     }
   });
 }

@@ -16,6 +16,13 @@ import {
 const form = document.getElementById("listingForm");
 const formMessage = document.getElementById("formMessage");
 
+let currentUser = null;
+
+  // 🔐 AUTH STATE (SAME AS LANDLORDS)
+  auth.onAuthStateChanged(user => {
+    currentUser = user;
+  });
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   formMessage.textContent = "";
