@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CampusNest Admin</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+
+<!-- 🔲 MODAL -->
+<div class="modal-overlay" id="modalOverlay" style="display:none;">
+  <div class="modal-box">
+    <h3 id="modalTitle"></h3>
+    <p id="modalContent"></p>
+    <div class="modal-actions">
+      <button id="modalConfirm" class="btn-confirm">Confirm</button>
+      <button id="modalCancel" class="btn-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="admin-container">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <span>CampusNest</span>
+    </div>
+
+    <ul>
+      <li><a href="#" data-nav="dashboard" class="active">Dashboard</a></li>
+      <li><a href="#" data-nav="listings">Listings</a></li>
+      <li><a href="#" data-nav="landlords">Landlords</a></li>
+      <li><a href="#" data-nav="users">Users</a></li>
+      <li><a href="#" data-nav="enquiries">Enquiries</a></li>
+      <li><a href="#" data-nav="messages">Messages</a></li>
+      <li>
+        <a href="#" id="sidebarLogoutBtn">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <h1>Dashboard Overview</h1>
+
+      <div class="admin-actions">
+        <div class="message-icon" id="messagesBtn">
+          <i class="fas fa-bell"></i>
+          <span class="badge" id="unreadMessagesBadge" style="display:none;">0</span>
+        </div>
+
+        <button id="logoutBtn">Logout</button>
+      </div>
+    </div>
+
+    <!-- 📊 DASHBOARD -->
+    <section class="dashboard-cards" data-section="dashboard">
+      <div class="card">
+        <h3>Total Listings</h3>
+        <div class="value" id="statListings">0</div>
+      </div>
+
+      <div class="card">
+        <h3>Total Landlords</h3>
+        <div class="value" id="statLandlords">0</div>
+      </div>
+
+      <div class="card">
+        <h3>Total Users</h3>
+        <div class="value" id="statUsers">0</div>
+      </div>
+
+      <div class="card">
+        <h3>Total Enquiries</h3>
+        <div class="value" id="statEnquiries">0</div>
+      </div>
+
+      <div class="card">
+        <h3>Total Messages</h3>
+        <div class="value" id="statMessages">0</div>
+      </div>
+    </section>
+
+    <!-- 📦 LISTINGS -->
+    <section class="table-section" data-section="listings">
+      <h2>Listings</h2>
+      <table id="listingsTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Property</th>
+            <th>Landlord</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- 🏠 LANDLORDS -->
+    <section class="table-section" data-section="landlords">
+      <h2>Landlords</h2>
+      <table id="landlordsTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- 👥 USERS -->
+    <section class="table-section" data-section="users">
+      <h2>Users</h2>
+      <table id="usersTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- ✉️ ENQUIRIES -->
+    <section class="table-section" data-section="enquiries">
+      <h2>Enquiries</h2>
+      <table id="enquiriesTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- 🔔 MESSAGES -->
+    <section class="table-section" data-section="messages">
+      <h2>Messages</h2>
+      <table id="messagesTable">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Date</th>
+            <th>Status / Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+  </main>
+</div>
+
+<!-- Firebase & Scripts (LOAD LAST) -->
+<script type="module" src="firebase.js"></script>
+<script type="module" src="auth.js"></script>
+<script type="module" src="admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,299 @@
+/* ===== Listing Details Section ===== */
+.listing-details {
+  padding: 60px 0;
+  background: linear-gradient(to bottom right, #fdfcfb, #e2d1c3);
+  font-family: "Poppins", sans-serif;
+}
+
+/* ===== Main Hero Image ===== */
+.main-listing-image {
+  display: block;
+  margin: 0 auto 40px auto;
+  max-width: 90%;
+  height: 420px;
+  width: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Listing Info Card ===== */
+.listing-info {
+  text-align: center;
+  margin-bottom: 40px;
+  background: #fff8e1;
+  border-radius: 16px;
+  padding: 30px;
+  width: 85%;
+  margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.listing-info h1 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.listing-info p {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+/* ===== Image Gallery ===== */
+.image-gallery {
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  width: 85%;
+  margin: 0 auto 50px auto;
+  padding: 30px 0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  text-align: center;
+}
+
+.image-gallery img.gallery-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 80%;
+  height: 350px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* ===== Gallery Arrows ===== */
+.gallery-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 204, 0, 0.9);
+  color: #333;
+  border: none;
+  font-size: 1.5rem;
+  padding: 12px 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-btn:hover {
+  background-color: #e0a800;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.gallery-btn.left {
+  left: 20px;
+}
+
+.gallery-btn.right {
+  right: 20px;
+}
+
+/* ===== Landlord Info Section ===== */
+.landlord-info {
+  text-align: center;
+  margin-bottom: 60px;
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 40px 30px;
+  width: 85%;
+  margin: 0 auto;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.landlord-info img.landlord-photo {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid #ffcc00;
+}
+
+.landlord-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.landlord-info p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* ===== Landlord Contact Buttons ===== */
+.landlord-contact {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.landlord-contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  background-color: #ffcc00;
+  color: #333;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.landlord-contact a:hover {
+  background-color: #e0a800;
+  transform: translateY(-2px);
+}
+
+.landlord-contact a i {
+  font-size: 1.2rem;
+}
+
+/* ===== Enquiry Form ===== */
+.enquiry-form {
+  max-width: 600px;
+  margin: 0 auto 60px auto;
+  text-align: left;
+  padding: 35px;
+  background: #fff8e1;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.enquiry-form h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.enquiry-form label {
+  display: block;
+  margin-bottom: 10px;
+  color: #444;
+  font-weight: 500;
+}
+
+.enquiry-form input,
+.enquiry-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 4px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background-color: #fff;
+  transition: border 0.3s ease;
+}
+
+.enquiry-form input:focus,
+.enquiry-form textarea:focus {
+  border-color: #ffcc00;
+  outline: none;
+}
+
+.enquiry-form button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.enquiry-form button:hover {
+  background-color: #e0a800;
+  transform: translateY(-2px);
+}
+
+/* ===== Map Section ===== */
+.listing-map {
+  text-align: center;
+  padding: 30px;
+  border-radius: 16px;
+  width: 85%;
+  margin: 0 auto 50px auto;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.listing-map iframe {
+  border-radius: 12px;
+  width: 100%;
+  height: 350px;
+  border: none;
+}
+
+.listing-form {
+  background: #fff;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.listing-form .form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.listing-form label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.listing-form input,
+.listing-form select,
+.listing-form textarea {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.listing-form .coordinates-group {
+  display: flex;
+  gap: 10px;
+}
+
+.listing-form .btn.submit-btn {
+  background-color: #0e387c;
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s ease;
+}
+
+.listing-form .btn.submit-btn:hover {
+  background-color: #1e53a2;
+}
+
+.form-message {
+  margin-top: 10px;
+  font-weight: 600;
+}
