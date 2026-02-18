@@ -1,5 +1,5 @@
 // add-listing.js
-import { db, storage, auth } from "./firebase.js";
+import { db, storage, auth } from "../core/firebase.js";
 import {
   collection,
   addDoc,

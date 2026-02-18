@@ -1,5 +1,5 @@
 // listing-details.js
-import { db, auth } from './firebase.js';
+import { db, auth } from '../core/firebase.js';
 import {
   doc,
   getDoc,
@@ -57,14 +57,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     const listing = listingSnap.data();
 
     // Main Image
-    const mainImgUrl = listing.imageUrl || "images/sample-listing.jpg";
+    const mainImgUrl = listing.imageUrl || "https://via.placeholder.com/900x500?text=Listing+Image";
     mainImageDiv.innerHTML = `<img src="${mainImgUrl}" alt="${listing.title || ""}" class="main-listing-image">`;
 
     // Listing Info
     listingInfoDiv.innerHTML = `
       <h1>${listing.title || ""}</h1>
       <p>${listing.description || "No description provided."}</p>
-      <p>💰 Price: R${listing.price || ""}</p>
+      <p>💰 Price: R${listing.price || ""} pm</p>
       <p>🏠 Type: ${listing.type || ""}</p>
       <p>🛏 Bedrooms: ${listing.bedrooms || ""}</p>
       <p>🎓 University: ${listing.university || ""}</p>
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const landlordSnap = await getDoc(doc(db, "landlords", listing.landlordId));
       if (landlordSnap.exists()) {
         const landlord = landlordSnap.data();
-        const landlordPhoto = landlord.photoUrl || "images/landlord.jpg";
+        const landlordPhoto = landlord.photoUrl || "https://via.placeholder.com/300x300?text=Landlord";
         landlordInfoDiv.innerHTML = `
           <img src="${landlordPhoto}" alt="${landlord.name || ""}" class="landlord-photo">
           <h3>${landlord.name || ""}</h3>

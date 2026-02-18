@@ -1,5 +1,5 @@
 // profile.js
-import { auth, db } from './firebase.js';
+import { auth, db } from '../core/firebase.js';
 import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 document.addEventListener("DOMContentLoaded", async () => {

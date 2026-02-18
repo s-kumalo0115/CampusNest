@@ -1,5 +1,5 @@
 // add-landlord.js
-import { db, storage } from "./firebase.js"; // import Firestore & Storage from modular firebase.js
+import { db, storage } from "../core/firebase.js"; // import Firestore & Storage from modular firebase.js
 import {
   collection,
   addDoc,

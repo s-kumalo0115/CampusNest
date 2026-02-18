@@ -4,21 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>CampusNest | Add Landlord</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../css/style.css" />
 
   <!-- Firebase (modular) -->
-  <script type="module" src="firebase.js"></script>
+  <script type="module" src="../js/core/firebase.js"></script>
 
   <!-- Add Landlord JS -->
-  <script type="module" src="add-landlord.js"></script>
-  <script type="module" src="auth.js"></script>
+  <script type="module" src="../js/features/add-landlord.js"></script>
+  <script type="module" src="../js/core/auth.js"></script>
 </head>
 <body>
   <!-- ===== HEADER ===== -->
   <header class="header">
     <div class="container navbar">
       <div class="logo"> 
-  <img src="images/logo.png.png" alt="CampusNest"/> 
+  <img src="../assets/images/logo.png.png" alt="CampusNest"/> 
   <span>CampusNest</span>
 </div>
       <ul class="nav-links">
@@ -53,22 +53,22 @@
   <!-- ===== MAIN FORM SECTION ===== -->
   <main>
     <section class="add-landlord container">
-      <h1>Add New Landlord</h1>
+      <h1 class="form-title">Add New Landlord</h1>
       <p class="intro-text">Fill in the landlord's details below to add them to CampusNest.</p>
 
       <form id="landlordForm" class="listing-form">
         <div class="form-group">
-          <label for="name">Full Name <span class="required">*</span></label>
+          <label for="name">Full Name</label>
           <input type="text" id="name" placeholder="e.g., Alex Joe" required>
         </div>
 
         <div class="form-group">
-          <label for="phone">Phone Number <span class="required">*</span></label>
+             <label for="phone">Phone Number</label>
           <input type="tel" id="phone" placeholder="e.g., 0712345678" required>
         </div>
 
         <div class="form-group">
-          <label for="email">Email <span class="required">*</span></label>
+          <label for="email">Email</label>
           <input type="email" id="email" placeholder="e.g., joe@example.com" required>
         </div>
 

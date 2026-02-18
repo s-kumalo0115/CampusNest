@@ -1,4 +1,4 @@
-import { db, auth } from './firebase.js';
+import { db, auth } from '../core/firebase.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
 

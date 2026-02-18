@@ -1,16 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>CampusNest | View Listings</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../css/style.css" />
 
   <!-- Firebase v10 modular -->
-  <script type="module" src="firebase.js"></script>
-  <script type="module" src="listings.js"></script>
-  <script type="module" src="auth.js"></script>
+  <script type="module" src="../js/core/firebase.js"></script>
+  <script type="module" src="../js/features/listings.js"></script>
+  <script type="module" src="../js/core/auth.js"></script>
 
   <style>
     
@@ -21,7 +20,7 @@
   <header class="header">
     <div class="container navbar">
       <div class="logo"> 
-  <img src="images/logo.png.png" alt="CampusNest"/> 
+  <img src="../assets/images/logo.png.png" alt="CampusNest"/> 
   <span>CampusNest</span>
 </div>
       <ul class="nav-links">
@@ -59,9 +58,8 @@
   </div>
 
   <!-- SEARCH BAR -->
-  <section class="search-bar container">
+    <section class="search-bar container">
     <input type="text" id="searchInput" placeholder="Search by location or university..." />
-    <button class="btn-add" onclick="window.location.href='add-listing.html'">+ Add Listing</button>
   </section>
 
   <!-- MAIN SECTION -->

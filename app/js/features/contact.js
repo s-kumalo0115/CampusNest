@@ -1,6 +1,6 @@
 // contact.js – AUTH REQUIRED CONTACT FORM
 
-import { auth, db } from "./firebase.js";
+import { auth, db } from "../core/firebase.js";
 import {
   collection,
   addDoc,
