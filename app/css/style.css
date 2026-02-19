@@ -2456,3 +2456,99 @@ footer > p {
     font-size: 0.78rem;
   }
 }
+
+/* ===== 2026-02 Mobile/Desktop alignment fixes ===== */
+
+/* Theme-consistent page nav buttons (not auth/profile buttons) */
+.nav-links > li > a {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 204, 0, 0.75) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 204, 0, 0.15);
+}
+
+.nav-links > li > a:hover,
+.nav-links > li > a.active,
+.nav-links > li > a:focus-visible {
+  background: #ffcc00 !important;
+  color: #003366 !important;
+  border-color: #ffcc00 !important;
+}
+
+/* Keep home hero search block centered */
+.hero .search-bar {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Better enquiries spacing from footer */
+.enquiries-page {
+  padding-bottom: 48px;
+}
+
+.enquiries-list {
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  /* Navbar page links in one centered row; auth/profile stays below */
+  .header .navbar {
+    align-items: center !important;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-links > li:not(#authContainer):not(#userDropdown) {
+    order: 1;
+    width: auto !important;
+    flex: 0 0 auto;
+  }
+
+  .nav-links > li:not(#authContainer):not(#userDropdown) a {
+    white-space: nowrap;
+    font-size: 0.84rem;
+    padding: 0.38rem 0.62rem;
+  }
+
+  .nav-links #authContainer,
+  .nav-links #userDropdown {
+    order: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 6px;
+  }
+
+  .nav-links #userDropdown {
+    order: 3;
+  }
+
+  /* Listings + landlord cards back to one per row on phone */
+  .listing-grid,
+  #landlord-grid,
+  .landlord-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    justify-items: center;
+  }
+
+  .card,
+  .landlord-card {
+    width: 100%;
+    max-width: 390px;
+  }
+
+  /* Enquiries page: center remove button and add bottom breathing room */
+  .enquiry-content .delete-enquiry-btn,
+  .delete-enquiry-btn {
+    align-self: center;
+    margin: 14px auto 0;
+    display: inline-flex;
+    justify-content: center;
+  }
+}
