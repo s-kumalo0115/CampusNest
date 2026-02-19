@@ -47,6 +47,7 @@ function initAuth() {
   const dropdownMenu = userDropdown?.querySelector(".dropdown-menu");
 
   const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: "select_account" });
 
   const showMessage = (el, msg, color = "red") => {
     if (!el) return;
@@ -73,6 +74,12 @@ function initAuth() {
     }
     if (code.includes("network-request-failed")) {
       return "Network error while contacting Firebase. Check your internet, disable blockers/VPN, and add this Railway domain in Firebase Auth authorized domains.";
+    }
+    if (code.includes("unauthorized-domain")) {
+      return `This domain (${window.location.hostname}) is not authorized for Google login. Add it in Firebase Console → Authentication → Settings → Authorized domains.`;
+    }
+    if (code.includes("operation-not-supported-in-this-environment")) {
+      return "This browser blocked popup sign-in. Retrying with Google redirect...";
     }
     return err?.message || "Authentication failed. Please try again.";
   };
@@ -260,6 +267,27 @@ if (signInTab && signUpTab && signInForm && signUpForm) {
       if (authModal) authModal.style.display = "none";
       showMessage(signInMessage, "Google sign-in successful.", "green");
     } catch (err) {
+      const code = err?.code || "";
+      const shouldUseRedirect =
+        code.includes("popup-blocked") ||
+        code.includes("cancelled-popup-request") ||
+        code.includes("operation-not-supported-in-this-environment");
+
+      if (shouldUseRedirect) {
+        try {
+          showMessage(signInMessage, "Opening Google sign-in...", "#003366");
+          showMessage(signUpMessage, "Opening Google sign-in...", "#003366");
+          await signInWithRedirect(auth, provider);
+          return;
+        } catch (redirectError) {
+          console.error("Google redirect sign-in error:", redirectError);
+          const redirectMsg = normalizeAuthError(redirectError);
+          showMessage(signInMessage, redirectMsg);
+          showMessage(signUpMessage, redirectMsg);
+          return;
+        }
+      }
+
       console.error("Google sign-in error:", err);
       const msg = normalizeAuthError(err);
       showMessage(signInMessage, msg);
@@ -402,4 +430,3 @@ if (document.readyState === "loading") {
 } else {
   initAuth();
 }
-
