@@ -75,6 +75,24 @@
       <div id="landlord-info" class="landlord-info">
       </div>
 
+            <!-- Enquiry Form -->
+      <div class="enquiry-form">
+        <h2>Send an Enquiry</h2>
+        <form id="enquiryForm">
+          <label for="fromDate">From Date</label>
+          <input type="date" id="fromDate" required>
+
+          <label for="toDate">To Date</label>
+          <input type="date" id="toDate" required>
+
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Ask the landlord anything about this listing..."></textarea>
+
+          <button type="submit">Send Enquiry</button>
+          <p id="enquiryStatus"></p>
+        </form>
+      </div>
+
       <!-- Map Section -->
       <div id="listing-map" class="listing-map">
         <h3>Property Location</h3>

@@ -129,6 +129,48 @@
   </div>
 </section>
 
+<!-- ===== STUDENT REVIEWS ===== -->
+<section class="reviews-section">
+  <div class="container">
+    <h2>What Students Are Saying</h2>
+    <p class="reviews-subtitle">Real stories from students who found their accommodation on CampusNest.</p>
+
+    <div class="reviews-grid" id="reviewsGrid"></div>
+
+    <div class="reviews-actions">
+      <button class="btn" id="viewMoreReviewsBtn" type="button">View More</button>
+      <button class="btn" id="viewLessReviewsBtn" type="button" style="display:none;">View Less</button>
+      <button class="btn" id="addViewBtn" type="button" style="display:none;">Add View</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ADD REVIEW POPUP ===== -->
+<div class="review-modal" id="reviewModal" style="display:none;">
+  <div class="review-modal-content">
+    <button class="review-modal-close" id="closeReviewModal" type="button">&times;</button>
+    <h3>Add Your Review</h3>
+    <form id="reviewForm" class="review-form">
+      <label for="reviewName">Your Name</label>
+      <input type="text" id="reviewName" required>
+
+      <label for="reviewUniversity">University</label>
+      <input type="text" id="reviewUniversity" required>
+
+      <label for="reviewText">Your Review</label>
+      <textarea id="reviewText" required placeholder="Share your experience..."></textarea>
+
+      <label for="reviewProfile">Profile Picture</label>
+      <input type="file" id="reviewProfile" accept="image/*" required>
+
+      <img id="reviewProfilePreview" class="review-profile-preview" alt="Profile preview" style="display:none;" />
+
+      <button type="submit" class="btn">Submit Review</button>
+      <p id="reviewFormStatus"></p>
+    </form>
+  </div>
+</div>
+
 <footer>
   <div class="container">
     <div class="footer-grid">

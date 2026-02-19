@@ -67,6 +67,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
+    const getPrimaryListingImage = (listingData) => {
+    const directImage = sanitizeImageUrl(listingData?.imageUrl || "");
+    if (directImage) return directImage;
+
+    const gallery = getListingGalleryImages(listingData);
+    if (gallery.length) return gallery[0];
+
+    return "https://via.placeholder.com/900x500?text=Listing+Image";
+  };
+
   function bindGallery() {
     if (!galleryImg) return;
 
@@ -130,7 +140,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const listing = listingSnap.data();
 
     // Main Image
-    const mainImgUrl = listing.imageUrl || "https://via.placeholder.com/900x500?text=Listing+Image";
+    const mainImgUrl = getPrimaryListingImage(listing);
     mainImageDiv.innerHTML = `<img src="${mainImgUrl}" alt="${listing.title || ""}" class="main-listing-image">`;
 
     // Listing Info
@@ -180,7 +190,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Enquiry Form
-    enquiryForm.addEventListener("submit", async (e) => {
+      if (enquiryForm && enquiryStatus) {
+      enquiryForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (!auth.currentUser) {
         enquiryStatus.textContent = "Please sign in to send an enquiry.";
@@ -216,7 +227,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         enquiryStatus.textContent = "❌ Failed to send enquiry.";
         console.error(err);
       }
-    });
+      });
+    }
 
     // Map Buttons
     if (mapDiv) {
