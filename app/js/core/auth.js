@@ -312,7 +312,7 @@ if (signInTab && signUpTab && signInForm && signUpForm) {
   /* ===========================
      AUTH STATE UI
      =========================== */
-  onAuthStateChanged(auth, user => {
+  onAuthStateChanged(auth, async user => {
     if (!userDropdown) return;
 
     if (!user) {
@@ -326,10 +326,20 @@ if (signInTab && signUpTab && signInForm && signUpForm) {
     userDropdown.style.display = "block";
     ensureProfileIcon();
 
-    const name = user.displayName || user.email?.split("@")[0] || "User";
+    let name = user.displayName || user.email?.split("@")[0] || "User";
+
+    try {
+      const profileSnap = await getDoc(doc(db, "users", user.uid));
+      const profileName = profileSnap.data()?.name?.trim();
+      if (profileName) {
+        name = profileName;
+      }
+    } catch (error) {
+      console.warn("Unable to read profile name from Firestore", error);
+    }
 
     const usernameEl = document.getElementById("username");
-     if (usernameEl) usernameEl.textContent = name;
+    if (usernameEl) usernameEl.textContent = name;
 
     const userNameTopEl = document.getElementById("userNameTop");
     if (userNameTopEl) userNameTopEl.textContent = name;

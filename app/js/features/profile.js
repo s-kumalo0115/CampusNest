@@ -1,6 +1,7 @@
 // profile.js
 import { auth, db } from '../core/firebase.js';
 import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { updateProfile } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
 
@@ -45,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const displayName = data.name || user.displayName || "User";
 
   usernameSpan.textContent = displayName;
-
+  if (userNameTop) userNameTop.textContent = displayName;
 
   profileNameInput.value = data.name || "";
   profilePhoneInput.value = data.phone || "";
@@ -74,8 +75,15 @@ document.addEventListener("DOMContentLoaded", async () => {
           { merge: true }
         );
 
+                if (name) {
+          await updateProfile(user, { displayName: name });
+        }
+
         profileMessage.innerText = "✅ Profile updated successfully!";
 
+        if (usernameSpan) usernameSpan.textContent = name || "User";
+        if (userNameTop) userNameTop.textContent = name || "User";
+        
         detailName.innerText = name || "-";
         detailPhone.innerText = phone || "-";
         detailCampus.innerText = campus || "-";
