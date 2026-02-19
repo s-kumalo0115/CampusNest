@@ -73,7 +73,13 @@ function initAuth() {
       return "Popup blocked by browser. Please allow popups and try again.";
     }
     if (code.includes("network-request-failed")) {
-      return "Network error while contacting Firebase. Check your internet, disable blockers/VPN, and add this Railway domain in Firebase Auth authorized domains.";
+      return `Firebase auth is blocked for this site (${window.location.hostname}). In Firebase Console: Authentication → Settings → Authorized domains, add this exact domain. Then in Authentication → Sign-in method, enable Email/Password and Google.`;
+    }
+    if (code.includes("unauthorized-domain")) {
+      return `Domain not authorized: ${window.location.hostname}. Fix: Firebase Console → Authentication → Settings → Authorized domains → Add domain. Then save and redeploy.`;
+    }
+    if (code.includes("operation-not-supported-in-this-environment")) {
+      return "This browser blocked popup sign-in. Retrying with Google redirect...";
     }
     if (code.includes("unauthorized-domain")) {
       return `This domain (${window.location.hostname}) is not authorized for Google login. Add it in Firebase Console → Authentication → Settings → Authorized domains.`;
