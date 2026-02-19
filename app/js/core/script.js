@@ -2,9 +2,6 @@
 // script.js - Global Site Functions (CLEAN + SAFE)
 // ===========================
 
-// ❌ REMOVE Firebase init entirely from this file
-// Firebase is initialized ONCE in firebase.js
-
 const MySite = {
   slideIndex: 0,
 
@@ -12,7 +9,9 @@ const MySite = {
     const slides = document.querySelectorAll(".slide");
     if (!slides.length) return;
 
-    slides.forEach(slide => slide.style.display = "none");
+    slides.forEach((slide) => {
+      slide.style.display = "none";
+    });
 
     this.slideIndex++;
     if (this.slideIndex > slides.length) this.slideIndex = 1;
@@ -47,8 +46,8 @@ const MySite = {
     };
 
     if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             runCounter(entry.target);
             observer.unobserve(entry.target);
@@ -56,15 +55,47 @@ const MySite = {
         });
       }, { threshold: 0.3 });
 
-      boxes.forEach(box => observer.observe(box));
+      boxes.forEach((box) => observer.observe(box));
     } else {
-      boxes.forEach(box => runCounter(box));
+      boxes.forEach((box) => runCounter(box));
     }
+  },
+
+    initScrollReveal() {
+    const revealTargets = document.querySelectorAll(
+      "section, .card, .listing-card, .listing-info, .landlord-info, .enquiry-card, .profile-card, .profile-details, .about-card, .feature-card, .form-card"
+    );
+
+    if (!revealTargets.length) return;
+
+    const directions = ["reveal-left", "reveal-right", "reveal-up"];
+
+    revealTargets.forEach((element, index) => {
+      if (element.classList.contains("hero") || element.classList.contains("slides")) return;
+      element.classList.add("reveal-base", directions[index % directions.length]);
+    });
+
+    if (!("IntersectionObserver" in window)) {
+      revealTargets.forEach((element) => element.classList.add("revealed"));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+    revealTargets.forEach((element) => observer.observe(element));
   },
 
   init() {
     this.showSlides();
     this.animateStats();
+    this.initScrollReveal();
   }
 };
 

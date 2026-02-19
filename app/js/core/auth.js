@@ -41,6 +41,8 @@ function initAuth() {
 
   const authContainer = document.getElementById("authContainer");
   const userDropdown = document.getElementById("userDropdown");
+  const userMenuBtn = document.getElementById("userMenuBtn");
+  const dropdownMenu = userDropdown?.querySelector(".dropdown-menu");
 
   const provider = new GoogleAuthProvider();
 
@@ -51,6 +53,33 @@ function initAuth() {
     if (!el) return;
     el.textContent = msg || "";
     el.style.color = color;
+  };
+
+  const ensureProfileIcon = () => {
+    if (!userMenuBtn) return;
+    if (userMenuBtn.querySelector(".user-btn-icon")) return;
+
+    const icon = document.createElement("span");
+    icon.className = "user-btn-icon";
+    icon.setAttribute("aria-hidden", "true");
+    icon.textContent = "👤";
+    userMenuBtn.prepend(icon);
+  };
+
+  const closeUserDropdown = () => {
+    if (!userDropdown) return;
+    userDropdown.classList.remove("is-open");
+    if (userMenuBtn) {
+      userMenuBtn.setAttribute("aria-expanded", "false");
+    }
+  };
+
+  const openUserDropdown = () => {
+    if (!userDropdown) return;
+    userDropdown.classList.add("is-open");
+    if (userMenuBtn) {
+      userMenuBtn.setAttribute("aria-expanded", "true");
+    }
   };
 
   /* ===========================
@@ -238,6 +267,7 @@ if (signInTab && signUpTab && signInForm && signUpForm) {
   if (logoutBtn) {
     logoutBtn.addEventListener("click", async () => {
       try {
+        closeUserDropdown();
         await signOut(auth);
         window.location.href = "index.html";
       } catch (err) {
@@ -246,25 +276,63 @@ if (signInTab && signUpTab && signInForm && signUpForm) {
     });
   }
 
+  if (userMenuBtn && dropdownMenu) {
+    ensureProfileIcon();
+    userMenuBtn.setAttribute("aria-haspopup", "menu");
+    userMenuBtn.setAttribute("aria-expanded", "false");
+
+    userMenuBtn.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (userDropdown?.classList.contains("is-open")) {
+        closeUserDropdown();
+      } else {
+        openUserDropdown();
+      }
+    });
+
+    dropdownMenu.addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!userDropdown?.contains(event.target)) {
+        closeUserDropdown();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeUserDropdown();
+      }
+    });
+  }
+
   /* ===========================
      AUTH STATE UI
      =========================== */
   onAuthStateChanged(auth, user => {
-    if (!authContainer || !userDropdown) return;
+    if (!userDropdown) return;
 
     if (!user) {
-      authContainer.style.display = "block";
+      if (authContainer) authContainer.style.display = "block";
       userDropdown.style.display = "none";
+      closeUserDropdown();
       return;
     }
 
-    authContainer.style.display = "none";
+    if (authContainer) authContainer.style.display = "none";
     userDropdown.style.display = "block";
+    ensureProfileIcon();
 
     const name = user.displayName || user.email?.split("@")[0] || "User";
 
     const usernameEl = document.getElementById("username");
-    if (usernameEl) usernameEl.textContent = "👤 " + name;
+     if (usernameEl) usernameEl.textContent = name;
+
+    const userNameTopEl = document.getElementById("userNameTop");
+    if (userNameTopEl) userNameTopEl.textContent = name;
   });
 }
 

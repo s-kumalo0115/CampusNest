@@ -16,12 +16,7 @@ import {
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-  const localFallbackGalleryImages = [
-    new URL("../../assets/images/gallery/bedroom.jpg", import.meta.url).href,
-    new URL("../../assets/images/gallery/toilet.jpg", import.meta.url).href,
-    new URL("../../assets/images/gallery/livingroom.jpg", import.meta.url).href,
-    new URL("../../assets/images/gallery/study-area.jpg", import.meta.url).href
-  ];
+  const galleryImageFallback = "https://via.placeholder.com/1000x620?text=Gallery+Image";
 
   const urlParams = new URLSearchParams(window.location.search);
   let listingId = urlParams.get("id");
@@ -36,19 +31,36 @@ document.addEventListener("DOMContentLoaded", async () => {
   const galleryImg = document.getElementById("galleryImage");
 
   let currentIndex = 0;
-  let galleryImages = [...localFallbackGalleryImages];
+  let galleryImages = [galleryImageFallback];
+  let imageErrorCount = 0;
+
+  const sanitizeImageUrl = (url) => {
+    if (typeof url !== "string") return "";
+    return url.trim().replace(/^"+|"+$/g, "");
+  };
+
+  const getListingGalleryImages = (listingData) => {
+    if (!Array.isArray(listingData?.images)) return [];
+
+    return listingData.images
+      .map(sanitizeImageUrl)
+      .filter((imageUrl) => imageUrl.length > 0);
+  };
 
   async function getSharedFallbackImages(excludeListingId = "") {
     try {
       const listingsSnap = await getDocs(collection(db, "listings"));
-      const donorDoc = listingsSnap.docs.find((docSnap) => {
-        if (docSnap.id === excludeListingId) return false;
-        const data = docSnap.data() || {};
-        return Array.isArray(data.images) && data.images.length > 0;
-      });
 
-      if (!donorDoc) return [];
-      return donorDoc.data().images || [];
+      for (const docSnap of listingsSnap.docs) {
+        if (docSnap.id === excludeListingId) continue;
+
+        const donorImages = getListingGalleryImages(docSnap.data());
+        if (donorImages.length) {
+          return donorImages;
+        }
+      }
+
+      return [];
     } catch (err) {
       console.error("Failed to fetch shared fallback gallery images:", err);
       return [];
@@ -57,19 +69,31 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function bindGallery() {
     if (!galleryImg) return;
-    galleryImg.src = galleryImages[currentIndex];
+
+    const activeImage = galleryImages[currentIndex] || galleryImageFallback;
+    galleryImg.src = activeImage;
+
     galleryImg.onerror = () => {
+      imageErrorCount += 1;
+      if (imageErrorCount < galleryImages.length) {
+        currentIndex = (currentIndex + 1) % galleryImages.length;
+        bindGallery();
+        return;
+      }
+
       galleryImg.onerror = null;
-      galleryImg.src = localFallbackGalleryImages[currentIndex % localFallbackGalleryImages.length];
+      galleryImg.src = galleryImageFallback;
     };
   }
 
   window.prevImage = () => {
+    imageErrorCount = 0;
     currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
     bindGallery();
   };
 
   window.nextImage = () => {
+    imageErrorCount = 0;
     currentIndex = (currentIndex + 1) % galleryImages.length;
     bindGallery();
   };
@@ -122,18 +146,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     `;
 
     // Image Gallery
-    const listingImages = Array.isArray(listing.images)
-      ? listing.images.filter((url) => typeof url === "string" && url.trim())
-      : [];
-    const listingHasImages = listingImages.length > 0;
-    if (listingHasImages) {
+    const listingImages = getListingGalleryImages(listing);
+    if (listingImages.length) {
       galleryImages = listingImages;
     } else {
       const sharedFallbackImages = await getSharedFallbackImages(listingId);
-      galleryImages = sharedFallbackImages.length ? sharedFallbackImages : localFallbackGalleryImages;
+      galleryImages = sharedFallbackImages.length ? sharedFallbackImages : [galleryImageFallback];
     }
     
     currentIndex = 0;
+    imageErrorCount = 0;
     bindGallery();
 
     // Landlord Info
