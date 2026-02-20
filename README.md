@@ -1,148 +1,119 @@
 # CampusNest 🏡🎓
 
-CampusNest is a student-accommodation web platform that helps university students discover verified rentals, connect with landlords, and submit property enquiries through a modern, mobile-friendly interface.
+> Find safe, verified student accommodation faster — with modern web tooling, Firebase-powered auth, and a clean user flow. 🚀
 
-**Live demo:** https://campusnest-sa.netlify.app/index.html
-
----
-
-## Project Overview
-
-Finding safe, affordable housing near campus is often fragmented and frustrating. CampusNest centralizes this process by providing:
-
-- A searchable listing marketplace for students.
-- Landlord onboarding and property publishing workflows.
-- A role-based admin dashboard for moderation and platform operations.
-- Firebase-powered authentication and real-time data management.
-
-This project demonstrates practical full-stack web engineering using vanilla JavaScript + Firebase services, including auth-gated flows, Firestore data modeling, and cloud-hosted deployment.
+[![Status](https://img.shields.io/badge/status-active-success)](#) [![Built%20with](https://img.shields.io/badge/Built%20with-Firebase-orange)](#) [![Frontend](https://img.shields.io/badge/Frontend-HTML%2FCSS%2FJS-blue)](#)
 
 ---
 
-## Core Features
+## ✨ What is CampusNest?
 
-### Student-facing
-- Browse and filter accommodation listings by location, university, price range, and bedrooms.
-- View detailed listing pages with property-specific information.
-- Submit property enquiries and contact messages.
-- Create an account and log in to unlock protected actions.
+**CampusNest** is a student accommodation web platform built to help students:
 
-### Landlord-facing
-- Register as a landlord and manage landlord profile details.
-- Add and publish new rental listings.
-- View enquiries from prospective tenants.
+- 🔎 Discover nearby rentals quickly
+- ✅ View verified landlord listings
+- 💬 Send enquiries to landlords
+- 👤 Create accounts and manage profiles
+- 🛡️ Access role-based admin workflows
 
-### Admin-facing
-- Secure admin access with role checks.
-- Moderate listings (including status updates and deletion).
-- Verify/unverify landlords.
-- Manage users, enquiries, and inbound contact messages.
-- Track dashboard-level platform counts and unread message indicators.
+It is designed to be practical, mobile-friendly, and easy to scale.
 
 ---
 
-## Tech Stack
+## 🌍 Live Demo
+
+- **Website:** https://campusnest-production.up.railway.app/index.html
+- **Alternative demo:** https://campusnest-sa.netlify.app/index.html
+
+---
+
+## 🧩 Core Features
+
+### 👩‍🎓 Student Features
+- Search listings by location, price range, and bedrooms
+- Open listing details with richer property info
+- Submit enquiries and contact messages
+- Sign up/sign in with email/password or Google (Firebase Auth)
+
+### 🧑‍💼 Landlord Features
+- Register landlord profile
+- Add and manage property listings
+- Receive student enquiries
+
+### 🛠️ Admin Features
+- Admin login with role checks
+- Moderate listings (approve/update/delete)
+- Verify/unverify landlords
+- Manage users, enquiries, and contact messages
+
+---
+
+## 🧰 Tools & Technologies Used
 
 - **Frontend:** HTML5, CSS3, JavaScript (ES Modules)
-- **Backend services:** Firebase Authentication, Cloud Firestore, Firebase Storage
-- **Security & data control:** Firestore security rules + indexes
-- **Deployment:** Netlify (static hosting)
+- **Backend Services:** Firebase Authentication, Cloud Firestore, Firebase Storage
+- **Hosting/Deploy:** Railway, Netlify
+- **Version Control:** Git + GitHub
+- **Testing/Debugging:** Browser DevTools, Playwright smoke checks
 
 ---
 
-## Architecture (High Level)
+## 🚀 Quick Start (Local)
 
-- **Static multi-page app** with page-specific JavaScript modules.
-- **Firebase modular SDK (v10)** for auth and database/storage access.
-- **Role-based behavior** enforced in app logic (student/landlord/admin workflows).
-- **Cloud Firestore collections** for core entities such as listings, landlords, users, enquiries, contacts, and admins.
-
----
-
-## Getting Started (Local Setup)
-
-### 1) Clone
 ```bash
 git clone https://github.com/skumalo0115-commits/CampusNest.git
 cd CampusNest
-```
-
-### 2) Configure Firebase
-- Copy values from your Firebase project into your app config.
-- You can reference `firebase-config.example.js` for structure and environment-variable options.
-- Ensure Firestore rules and indexes are deployed for production behavior.
-
-### 3) Run a local static server
-Because this is a static multi-page app, you can run with any lightweight local server:
-
-```bash
-# Option A
-python -m http.server 3000
-
-# Option B
-npx http-server .
+npm install
+npm run dev
 ```
 
 Then open:
-- `http://localhost:3000/CampusNest/index.html` (if serving from repo root), or
-- `http://localhost:3000/index.html` (if serving inside `CampusNest/` folder).
+
+- `http://localhost:5500/Pages/index.html`
 
 ---
 
-## Repository Structure
+## 🔐 Firebase Setup Checklist (Important)
+
+If authentication fails, confirm these first:
+
+1. Firebase Console → **Authentication** → **Sign-in method**
+   - Enable **Email/Password**
+   - Enable **Google**
+2. Firebase Console → **Authentication** → **Settings** → **Authorized domains**
+   - Add your deployed domain (example: `campusnest-production.up.railway.app`)
+3. Confirm your Firebase config values in `app/js/core/firebase.js`
+
+---
+
+## 📁 Project Structure
 
 ```text
 CampusNest/
-├── CampusNest/
-│   ├── index.html
-│   ├── listings.html
-│   ├── listing-details.html
-│   ├── landlords.html
-│   ├── enquiries.html
-│   ├── admin.html
-│   ├── auth.html
-│   ├── profile.html
-│   ├── contact.html
-│   ├── add-listing.html
-│   ├── add-landlord.html
-│   ├── *.js / *.css
-│   └── images/
-├── firebase-config.example.js
+├── app/
+│   ├── Pages/
+│   ├── css/
+│   ├── js/
+│   └── assets/
+├── firebase/
 ├── README.md
-├── CONTRIBUTING.md
-└── LICENSE
+└── package.json
 ```
 
 ---
 
-## Resume-Ready Project Description
+## 💼 GitHub Short Description (Copy/Paste)
 
-Use any of the options below depending on your resume space.
-
-### 1-line version
-**CampusNest** — Built a Firebase-powered student housing platform with listing discovery, landlord onboarding, enquiry flows, and an admin moderation dashboard.
-
-### 2–3 line version
-Developed **CampusNest**, a full-stack student accommodation web app using JavaScript, Firebase Authentication, Cloud Firestore, and Netlify. Implemented searchable listing flows, landlord listing management, enquiry/contact workflows, and role-based admin moderation for listings, users, and landlord verification.
-
-### Bullet-point version (ATS-friendly)
-- Engineered a multi-page student housing platform using **HTML/CSS/JavaScript + Firebase** for authentication, database, and storage.
-- Built listing discovery and filtering workflows with auth-gated detail access and enquiry submission.
-- Implemented landlord and admin operations, including listing management, verification workflows, and dashboard moderation tools.
-- Deployed and maintained the application on **Netlify**, with production-oriented configuration patterns for Firebase.
+> **CampusNest** is a Firebase-powered student accommodation platform for listing discovery, landlord verification, and enquiry management with role-based admin moderation. 🏡✨
 
 ---
 
-## Suggested Resume Skills Tags
+## 🤝 Contribution
 
-`JavaScript` · `Firebase Authentication` · `Cloud Firestore` · `Firebase Storage` · `HTML/CSS` · `Netlify` · `CRUD Applications` · `Role-Based Access` · `Frontend Engineering`
+PRs and feedback are welcome! Open an issue, suggest improvements, and help improve student housing access with tech. 💙
 
 ---
 
-## Contribution
+## 👤 Author
 
-Contributions are welcome via issues and pull requests. Please review `CONTRIBUTING.md` first.
-
-## Author
-
-GitHub: https://github.com/skumalo0115-commits
+- GitHub: https://github.com/skumalo0115-commits
