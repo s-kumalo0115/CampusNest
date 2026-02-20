@@ -271,9 +271,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.querySelector('.nav-toggle');
   const navWrapper = document.querySelector('.nav-links-wrapper');
 
-  toggleBtn.addEventListener('click', () => {
-    navWrapper.classList.toggle('show');
-  });
+  if (toggleBtn && navWrapper) {
+    toggleBtn.addEventListener('click', () => {
+      navWrapper.classList.toggle('show');
+    });
+  }
 
 
 </script>
