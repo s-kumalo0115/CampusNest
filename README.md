@@ -61,7 +61,7 @@ It is designed to be practical, mobile-friendly, and easy to scale.
 ## 🚀 Quick Start (Local)
 
 ```bash
-git clone https://github.com/skumalo0115-commits/CampusNest.git
+git clone https://github.com/s-kumalo0115/CampusNest.git
 cd CampusNest
 npm install
 npm run dev
