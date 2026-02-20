@@ -2646,11 +2646,22 @@ footer > p {
 }
 
 
+/* ===== Uniform navbar page-link widths on phone only ===== */
 @media (max-width: 768px) {
-  .nav-links > li:not(#authContainer):not(#userDropdown) a {
-    width: 156px;
+  .nav-links > li:not(#authContainer):not(#userDropdown) {
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-links > li:not(#authContainer):not(#userDropdown) > a {
+    width: 156px !important;
+    min-width: 156px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    white-space: nowrap;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
