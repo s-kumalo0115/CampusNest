@@ -83,6 +83,14 @@ function initAuth() {
     }
     if (code.includes("operation-not-supported-in-this-environment")) {
       return "This browser blocked popup sign-in. Retrying with Google redirect...";
+
+    }
+    if (code.includes("unauthorized-domain")) {
+      return `This domain (${window.location.hostname}) is not authorized for Google login. Add it in Firebase Console → Authentication → Settings → Authorized domains.`;
+    }
+    if (code.includes("operation-not-supported-in-this-environment")) {
+      return "This browser blocked popup sign-in. Retrying with Google redirect...";
+
     }
     return err?.message || "Authentication failed. Please try again.";
   };
