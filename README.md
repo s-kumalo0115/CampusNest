@@ -4,7 +4,7 @@
 
 [![Status](https://img.shields.io/badge/status-active-success)](#) [![Built%20with](https://img.shields.io/badge/Built%20with-Firebase-orange)](#) [![Frontend](https://img.shields.io/badge/Frontend-HTML%2FCSS%2FJS-blue)](#)
 
-![Uploading image.png…]()
+<img width="1900" height="917" alt="image" src="https://github.com/user-attachments/assets/e1be9d9f-c6db-4de1-883d-e2d02a2ca554" />
 
 ---
 
